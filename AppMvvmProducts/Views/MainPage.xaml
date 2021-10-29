@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:AppMvvmProducts"
+             xmlns:vm ="clr-namespace:AppMvvmProducts.ViewModels"
+             x:Class="AppMvvmProducts.Views.MainPage">
+    <ContentPage.BindingContext>
+        <vm:ContactVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
+            <Label Text="REGISTER STUDENTS MVVM APP CRUD"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <Entry x:Name="Name" Placeholder=" Enter Name" 
+                   Text="{Binding NameProp, Mode=TwoWay}"/>
+            <Entry x:Name="Phone" Placeholder=" Enter Phone" 
+                   Text="{Binding PhoneProp, Mode=TwoWay}"/>
+            <Entry x:Name="City" Placeholder=" Enter City" 
+                   Text="{Binding CityProp, Mode=TwoWay}"/>
+
+            <StackLayout VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" >
+
+                <Button x:Name="SaveButton" Text="Save Data" 
+                        Command="{Binding SaveCommand}"/>
+
+                <Button x:Name="ShowButton" Text="Show Data" 
+                        Command="{Binding ShowCommand}"/>
+
+            </StackLayout>
+
+
+            <StackLayout>
+                <ListView x:Name="DataList" ItemsSource="{Binding Contacts}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Name}" Detail="{Binding City}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
